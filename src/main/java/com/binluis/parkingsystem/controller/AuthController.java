@@ -1,4 +1,4 @@
-package com.binluis.parkingsystem.exception;
+package com.binluis.parkingsystem.controller;
 
 import com.binluis.parkingsystem.exception.AppException;
 import com.binluis.parkingsystem.models.Role;
@@ -31,7 +31,7 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class    AuthController {
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -82,6 +82,7 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!Kyle!!!!!!!!!!!" + RoleName.ROLE_USER);
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
