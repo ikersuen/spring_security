@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -31,6 +32,7 @@ public class OrderResource {
     ParkingLotRepository parkingLotRepository;
 
     @GetMapping(produces = {"application/json"})
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<List<ParkingOrder>> showAllOrders() {
         List<ParkingOrder> allOrders = parkingOrderRepository.findAll();
         return ResponseEntity.ok(allOrders);
